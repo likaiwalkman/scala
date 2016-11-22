@@ -1,4 +1,4 @@
-package com.victor.akka
+package com.victor.akka.actors
 
 import akka.actor._
 import akka.pattern.{ask, pipe}
@@ -6,10 +6,14 @@ import akka.util.Timeout
 
 import scala.concurrent.duration._
 
+/**
+  * messenger
+  */
 class Communicator extends Actor {
 
   val worker = context.actorSelection("../worker")
   implicit val timeout = Timeout(1 second)
+
   import scala.concurrent.ExecutionContext.Implicits.global
 
   override def receive: Receive = {

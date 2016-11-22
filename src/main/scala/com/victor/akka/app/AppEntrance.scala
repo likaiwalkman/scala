@@ -1,14 +1,15 @@
-package com.victor.akka
+package com.victor.akka.app
 
 import akka.actor.{ActorSystem, Props}
 import akka.pattern._
 import akka.util.Timeout
+import com.victor.akka.context.Master
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
 
-
 /**
+  * very simple demonstration to show how actors act
   * Created by likai on 2016/11/21.
   */
 object AppEntrance extends App {

@@ -1,12 +1,15 @@
-package com.victor.akka
+package com.victor.akka.actors
 
 import java.util.concurrent.TimeUnit
 
 import akka.actor.Actor
 
-class Operator  extends  Actor{
+/**
+  * concrete worker
+  */
+class Operator extends Actor {
   override def receive: Receive = {
-    case "Request" =>{
+    case "Request" => {
       TimeUnit.MILLISECONDS.sleep(1000)
       println("sleep 1s")
       sender ! "WorkDone"

@@ -1,9 +1,13 @@
 
-package com.victor.akka
-import akka.actor.{Actor, Props}
-import com.victor.akka.{Commander, Communicator, Operator}
+package com.victor.akka.context
 
-class Master extends Actor{
+import akka.actor.{Actor, Props}
+import com.victor.akka.actors.{Commander, Communicator, Operator}
+
+/**
+  * 'context' actor where other children actors dwell in
+  */
+class Master extends Actor {
 
   val commander = context.actorOf(Props(new Commander()), "commander")
   val messenger = context.actorOf(Props(new Communicator()), "messenger")
