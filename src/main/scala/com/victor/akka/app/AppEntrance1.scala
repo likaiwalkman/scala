@@ -12,7 +12,7 @@ import scala.concurrent.duration._
   * very simple demonstration to show how actors act
   * Created by likai on 2016/11/21.
   */
-object AppEntrance extends App {
+object AppEntrance1 extends App {
   val system = ActorSystem("demo")
   val context = system.actorOf(Props(new Master), "master")
   val commander = system.actorSelection("user/master/commander")

@@ -19,6 +19,9 @@ class Commander extends Actor {
     case "WorkDone" => {
 
     }
+    case "Hello" =>{
+      println("commander received Hello")
+    }
     case "WorkReady" => {
       implicit val timeout = Timeout(5000 milliseconds)
       val outcome = Await.result(messenger ? "Request", 5000 milliseconds).asInstanceOf[String]
