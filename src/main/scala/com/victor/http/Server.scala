@@ -1,4 +1,3 @@
-/*
 package com.victor.http
 
 import java.util
@@ -10,11 +9,11 @@ import spray.http.StatusCodes
 import spray.routing.{RejectionHandler, _}
 
 class Server extends Actor with HttpService {
-  override def receive: Receive = runRoute(route)
-
-  override implicit def actorRefFactory: ActorRefFactory = context
+  def actorRefFactory: ActorRefFactory = context
 
   implicit def executionContext = actorRefFactory.dispatcher
+
+  def receive: Receive = runRoute(route)
 
   def route: Route = {
     requestInstance { request =>
@@ -22,12 +21,12 @@ class Server extends Actor with HttpService {
         val url = uri.path.toString();
         if ("report_sms_rl" != url && "sms_send" != url) {
           optionalCookie("_tk") {
-            case Some(_tk) =>
+            case Some(_tk) => {
               val appId: Long = 90019L;
               //mocked service to get result
               val result = new util.HashMap[String, Object]
-              result.put("success", false);
-              result.put("hasError", true);
+              result.put("success", false.asInstanceOf[Object]);
+              result.put("hasError", true.asInstanceOf[Object]);
               optionalHeaderValueByName("origin") { originOption =>
                 val origin = originOption match {
                   case Some(value) => value
@@ -41,6 +40,7 @@ class Server extends Actor with HttpService {
                   complete(JSON.toJSONString(result, true));
                 }
               }
+            }
             case None =>
               handleRejections(corsAwareRejectionHandler) {
                 noTKRoute ~ innerRoute
@@ -108,11 +108,10 @@ class Server extends Actor with HttpService {
           val resultMap = new java.util.HashMap[String, AnyRef]()
           //mocked service to get result
           resultMap.put("smsMessages", new util.LinkedList[Object]())
-          resultMap.put("count", 0)
+          resultMap.put("count", 0.asInstanceOf[AnyRef])
           JSON.toJSONString(resultMap, true)
         }
       }
     }
   }
 }
-*/
