@@ -20,7 +20,7 @@ object AppEntrance1 extends App {
   val outcome = Await.result(commander ? "WorkReady", 5000 milliseconds).asInstanceOf[String]
   outcome match {
     case "Over" => {
-      println("over")
+      println("terminated")
     }
   }
 }

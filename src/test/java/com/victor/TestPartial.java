@@ -3,8 +3,6 @@ package com.victor;
 import akka.dispatch.ExecutionContexts;
 import scala.PartialFunction;
 import scala.concurrent.ExecutionContext;
-import scala.concurrent.Future;
-import akka.dispatch.*;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
