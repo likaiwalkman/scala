@@ -13,6 +13,7 @@ class MyActor extends Actor {
     case MyMessage =>
       println("MyActor send AnotherMessage to child AnotherActor")
       anotherActor ! AnotherMessage
+    case "over" => println("i am over")
   }
 
   def createAnother = context.actorOf(Props[AnotherActor])
@@ -30,10 +31,12 @@ class MessageSendingSpec extends TestKit(ActorSystem("test")) with WordSpecLike{
   val myActor = TestActorRef(new MyActor{
     override def createAnother = probe.ref
   })
+
   "Sending MyMessage to an instance of MyActor" should {
     "pass AnotherMessage to the child AnotherActor" in {
       myActor ! MyMessage
       probe.expectMsg(AnotherMessage)
+      probe.forward(myActor, "over")
     }
   }
 }
